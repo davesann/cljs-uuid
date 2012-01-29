@@ -31,7 +31,7 @@ Simple CLJS uuid generator
 (pr-str u)
 
 ; read a uuid pr-str string 
-(def u3 (uuid/read-pr-str "#uuid 7ec23197-d016-40e4-a03a-145fe85bfd8f"))
+(def u3 (uuid/read-pr-str "#uuid \"7ec23197-d016-40e4-a03a-145fe85bfd8f\""))
 
 ; equality works
 (= u2 u3)
