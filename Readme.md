@@ -11,31 +11,32 @@ Simple CLJS uuid generator
 * clojars [cljs-uuid "0.0.1"]
 
 
-'''clojure
+```clojure
 (ns cljs.main
   (:require
     [cljs-uuid.core :as uuid]
     )
   )
 
-; make a uuid
+; make a uuid  
 (def u (uuid/make-v4))
 
-; as a string
+; as a string  
 (str u)
 
-; read a uuid string 
+; read a uuid string   
 (def u2 (uuid/read-str "7ec23197-d016-40e4-a03a-145fe85bfd8f"))
 
-; as clj reader literal
+; as clj reader literal  
 (pr-str u)
 
-; read a uuid pr-str string 
+; read a uuid pr-str string   
 (def u3 (uuid/read-pr-str "#uuid \"7ec23197-d016-40e4-a03a-145fe85bfd8f\""))
 
-; equality works
+; equality works  
 (= u2 u3)
-'''
+
+```
 
 ## TODO
 
