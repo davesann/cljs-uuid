@@ -9,6 +9,10 @@ Simple CLJS uuid generator
 ## usage
 
 * clojars [cljs-uuid "0.0.1"]
+* clojars [cljs-uuid "0.0.2"] : includes equivalent API in clojure for portability
+
+As of version 0.0.2 you can use the lib in clojure as well as cljs.
+In clj, underneath, java.util.UUID is used.
 
 
 ```clojure
