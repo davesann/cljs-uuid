@@ -81,7 +81,8 @@
     (+ (* (rand-int pow2-32) pow2-16)    
        (rand-int pow2-16))
     ))
-                 
+
+(def make-random make-v4)
 
 ;; make UUID pr-str printable
 (extend-protocol IPrintable

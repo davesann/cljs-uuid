@@ -7,6 +7,8 @@
   []
   (java.util.UUID/randomUUID))
 
+(def make-random make-v4)
+
 (defn read-str 
   "read a raw (8-4-4-4-12) uuid string"
   [uuid-str]
