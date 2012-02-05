@@ -12,7 +12,7 @@ Simple CLJS uuid generator
 * clojars [cljs-uuid "0.0.2"] : includes equivalent API in clojure for portability
 * clojars [cljs-uuid "0.0.3"] : 
  - added make-random to use in place of make-v4 (deprecated).
- - added cljs parsing of #<UUID ...> issue #1
+ - added cljs parsing of #\<UUID ...\> issue #1
 
 As of version 0.0.2 you can use the lib in clojure as well as cljs.
 In clj, underneath, java.util.UUID is used.
