@@ -10,7 +10,9 @@ Simple CLJS uuid generator
 
 * clojars [cljs-uuid "0.0.1"]
 * clojars [cljs-uuid "0.0.2"] : includes equivalent API in clojure for portability
-* clojars [cljs-uuid "0.0.3"] : added make-random to use in place of make-v4
+* clojars [cljs-uuid "0.0.3"] : 
+ - added make-random to use in place of make-v4 (deprecated).
+ - added cljs parsing of #<UUID ...> issue #1
 
 As of version 0.0.2 you can use the lib in clojure as well as cljs.
 In clj, underneath, java.util.UUID is used.
@@ -37,6 +39,13 @@ In clj, underneath, java.util.UUID is used.
 
 ; read a uuid pr-str string   
 (def u3 (uuid/read-pr-str "#uuid \"7ec23197-d016-40e4-a03a-145fe85bfd8f\""))
+
+; read a uuid pr-str string   
+;; as printed by the current clj pr-str.  
+;; note that this is not readable by the clojure reader and  
+;; I expect will be removed in clojure 1.4 in favour of the above  
+(def u3 (uuid/read-pr-str "#<UUID 7ec23197-d016-40e4-a03a-145fe85bfd8f>"))
+
 
 ; equality works  
 (= u2 u3)

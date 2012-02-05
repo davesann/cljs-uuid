@@ -117,13 +117,16 @@
 
 
 (def uuid-pr-str-re #"#uuid\s+\"(.{36})\"")
+(def uuid-pr-str-re2 #"#<UUID\s+(.{36})>")
 
 ;; Reader in cljs - does not (yet?) handle tags
 ;; and I don't know how to extend it anyway.
 (defn read-pr-str 
-  "read in #uuid \"... \""
+  "read in #uuid \"... \" or #<UUID ...>"
   [uuid-pr-str]
   (if-let [[_ uuid-str] (re-matches uuid-pr-str-re uuid-pr-str)]
     (read-str uuid-str)
-    (throw (make-exception (str "Error Reading UUID: " uuid-pr-str)))))
+    (if-let [[_ uuid-str] (re-matches uuid-pr-str-re2 uuid-pr-str)]
+      (read-str uuid-str)
+      (throw (make-exception (str "Error Reading UUID: " uuid-pr-str))))))
 
