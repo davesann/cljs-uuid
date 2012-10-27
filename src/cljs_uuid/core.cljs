@@ -66,7 +66,7 @@
    )
 
 
-(defn make-v4 
+(defn make-random
   "make a version 4 (random UUID as per http://www.ietf.org/rfc/rfc4122.txt"
   []
   (UUID. 
@@ -82,7 +82,8 @@
        (rand-int pow2-16))
     ))
 
-(def make-random make-v4)
+;; backwards compatibility
+(def make-v4 make-random)
 
 ;; make UUID pr-str printable
 (extend-protocol IPrintable
