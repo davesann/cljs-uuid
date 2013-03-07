@@ -22,6 +22,7 @@ Micro clojure and clojurescript portability lib for uuid creation
 As of version 0.0.2 you can use the lib in clojure as well as cljs.
 In clj, underneath, java.util.UUID is used.
 
+see: https://github.com/davesann/cljs-uuid/blob/master/test/main.cljs
 
 ```clojure
 (ns test.main
@@ -46,12 +47,10 @@ In clj, underneath, java.util.UUID is used.
   (log "id1 pr-str" id1-pr-str)
   (log "id2 str"    id2-str)
   (log "(= id1 id1)" (= id1 id1))
-  (log "(= id1 id2)" (= id1 id2))
+  (log "(not= id1 id2)" (not= id1 id2))
   
   (log "(reader/read-string id1-str)" id1-reread)
   (log "(= id1 id1-reread)" (= id1 id1-reread))
-  (log "" (= (str id1) (str id1-reread)))
-  (log (.-uuid id1) (.-uuid id1-reread))
   
   (js/console.log id1)
   (js/console.log id1-reread)
