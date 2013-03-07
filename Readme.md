@@ -2,9 +2,7 @@
 
 Micro clojure and clojurescript portability lib for uuid creation
 
-* can generate version4 (random uuid), as per http://www.ietf.org/rfc/rfc4122.txt
-* can read and print uuid literals as per http://dev.clojure.org/jira/browse/CLJ-914 (but no cljs reader capability)
-* can read and print plain uuid strings '8-4-4-4-12'
+* can generate version4 in clojurescript (random uuid), as per http://www.ietf.org/rfc/rfc4122.txt
 
 ## usage
 
