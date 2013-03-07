@@ -1,6 +1,6 @@
 # cljs-uuid
 
-Simple CLJS uuid generator
+Micro clojure and clojurescript portability lib for uuid creation
 
 * can generate version4 (random uuid), as per http://www.ietf.org/rfc/rfc4122.txt
 * can read and print uuid literals as per http://dev.clojure.org/jira/browse/CLJ-914 (but no cljs reader capability)
@@ -13,43 +13,49 @@ Simple CLJS uuid generator
 * clojars [cljs-uuid "0.0.3"] : 
  - added make-random to use in place of make-v4 (deprecated).
  - added cljs parsing of #\<UUID ...\> issue #1
+* clojars [cljs-uuid "0.0.4"] : 
+ - updated similar to https://github.com/davesann/cljs-uuid/issues/2
+ - uses cljs.core.UUID
+ - removed no longer relevant print methods
+ - only relevant fn is now make-random
 
 As of version 0.0.2 you can use the lib in clojure as well as cljs.
 In clj, underneath, java.util.UUID is used.
 
 
 ```clojure
-(ns cljs.main
+(ns test.main
   (:require
     [cljs-uuid.core :as uuid]
-    )
+    [cljs.reader :as reader]))
+
+(defn log [msg x]
+  (do (js/console.log (pr-str {:msg msg :data x}))
+    x ))
+
+(log "Starting Test" nil)
+
+(let [id1 (uuid/make-random)
+      id2 (uuid/make-random)
+      id1-str    (str id1)
+      id2-str    (str id2)
+      id1-pr-str (pr-str id1)
+      id1-reread (reader/read-string id1-str)
+      ]
+  (log "id1 str"    id1-str)
+  (log "id1 pr-str" id1-pr-str)
+  (log "id2 str"    id2-str)
+  (log "(= id1 id1)" (= id1 id1))
+  (log "(= id1 id2)" (= id1 id2))
+  
+  (log "(reader/read-string id1-str)" id1-reread)
+  (log "(= id1 id1-reread)" (= id1 id1-reread))
+  (log "" (= (str id1) (str id1-reread)))
+  (log (.-uuid id1) (.-uuid id1-reread))
+  
+  (js/console.log id1)
+  (js/console.log id1-reread)
   )
-
-; make a uuid (version 4 random uuid)  
-(def u (uuid/make-random))
-
-; as a string  
-(str u)
-
-; read a uuid string   
-(def u2 (uuid/read-str "7ec23197-d016-40e4-a03a-145fe85bfd8f"))
-
-; as clj reader literal  
-(pr-str u)
-
-; read a uuid pr-str string   
-(def u3 (uuid/read-pr-str "#uuid \"7ec23197-d016-40e4-a03a-145fe85bfd8f\""))
-
-; read a uuid pr-str string   
-;; as printed by the current clj pr-str.  
-;; note that this is not readable by the clojure reader and  
-;; I expect will be removed in clojure 1.4 in favour of the above  
-(def u3 (uuid/read-pr-str "#<UUID 7ec23197-d016-40e4-a03a-145fe85bfd8f>"))
-
-
-; equality works  
-(= u2 u3)
-
 ```
 
 ## TODO
