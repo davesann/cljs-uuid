@@ -7,3 +7,8 @@
 
 (def make-random make-v4)
 
+(defn make-random-string
+    "Returns a UUID as as String. Common method between CLJ and CLJS for generating UUID strings"
+    []
+    (str (make-random)))
+

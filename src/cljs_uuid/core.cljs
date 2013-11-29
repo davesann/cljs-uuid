@@ -22,3 +22,8 @@
 ;; backwards compatibility
 (def make-v4 make-random)
 
+(defn make-random-string
+    "Returns a UUID as as String. Common method between CLJ and CLJS for generating UUID strings"
+    []
+    (.-uuid (make-random)))
+
