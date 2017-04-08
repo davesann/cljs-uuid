@@ -1,5 +1,5 @@
 (ns cljs-uuid.core
-  (:require 
+  (:require
     [goog.string.StringBuffer]
     ))
 
@@ -15,10 +15,10 @@
           (g [] (.toString  (bit-or 0x8 (bit-and 0x3 (rand-int 15))) 16))]
     (UUID. (.toString
              (goog.string.StringBuffer.
-               (f) (f) (f) (f) (f) (f) (f) (f) "-" (f) (f) (f) (f) 
+               (f) (f) (f) (f) (f) (f) (f) (f) "-" (f) (f) (f) (f)
                "-4" (f) (f) (f) "-" (g) (f) (f) (f) "-"
-               (f) (f) (f) (f) (f) (f) (f) (f) (f) (f) (f) (f))))))
- 
+               (f) (f) (f) (f) (f) (f) (f) (f) (f) (f) (f) (f)))
+           nil)))
+
 ;; backwards compatibility
 (def make-v4 make-random)
-
